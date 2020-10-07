@@ -1,17 +1,15 @@
 const AnagramFinder = function (word) {
-    this.word = word.split("")
+    this.word = word.toLowerCase()
 
 }
 
 AnagramFinder.prototype.findAnagrams = function (otherWords) {
 
-    const words = otherWords.map((letter) => {
-        return letter.split("").join("")
+    const anagrams = otherWords.filter((letter) => {
+        return letter.toLowerCase().replace(/[\W_]+/g, "").split("").sort().join("") === this.word.replace(/[\W_]+/g, "").split("").sort().join("")
     })
-    const anagrams = this.word.filter((letter) => {
-        return letter.join("") === words
-    })
-    console.log(anagrams);
+
+    console.log(otherWords[0].toLowerCase().replace(/[\W_]+/g, "").split("").sort())
     return anagrams;
 
 }
